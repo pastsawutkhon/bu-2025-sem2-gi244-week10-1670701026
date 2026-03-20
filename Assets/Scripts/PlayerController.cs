@@ -10,12 +10,14 @@ public class PlayerController : MonoBehaviour
 
     public AudioClip jumpSfx;
     public AudioClip crashSfx;
+    public float playerHealth = 3;
     public bool isDash = false;
 
     private Rigidbody rb;
     private InputAction jumpAction;
     private bool isOnGround = true;
     private bool isDbJump = true;
+    
 
     private Animator playerAnim;
     private AudioSource playerAudio;
@@ -80,16 +82,31 @@ public class PlayerController : MonoBehaviour
             isDbJump = true;
             dirtParticle.Play();
         }
+        
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
-            Debug.Log("Game Over!");
-            gameOver = true;
-            playerAnim.SetBool("Death_b", true);
-            playerAnim.SetInteger("DeathType_int", 1);
-            explosionParticle.Play();
-            dirtParticle.Stop();
-            playerAudio.PlayOneShot(crashSfx);
+            playerHealth--;
+            if (playerHealth <= 0)
+            {
+                Debug.Log("Game Over!");
+                gameOver = true;
+                playerAnim.SetBool("Death_b", true);
+                playerAnim.SetInteger("DeathType_int", 1);
+                explosionParticle.Play();
+                dirtParticle.Stop();
+                playerAudio.PlayOneShot(crashSfx);
+            }
+            else
+            {
+                
+                explosionParticle.Play();
+                playerAudio.PlayOneShot(crashSfx);
+                Destroy(collision.gameObject);
+            }
+                
+            
         }
     }
+    
 
 }

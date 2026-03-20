@@ -365,7 +365,10 @@ MonoBehaviour:
   dirtParticle: {fileID: 1120688231}
   jumpSfx: {fileID: 8300000, guid: 08ab7053d586c458db3774d33c141a4b, type: 3}
   crashSfx: {fileID: 8300000, guid: 4bcde6de2166e41e284ec46d8a01fb90, type: 3}
+  playerHealth: 3
+  isDash: 0
   gameOver: 0
+  backGround: {fileID: 835818919}
 --- !u!65 &383521443
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -896,6 +899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  speedTwo: 2
 --- !u!65 &835818924
 BoxCollider:
   m_ObjectHideFlags: 0
