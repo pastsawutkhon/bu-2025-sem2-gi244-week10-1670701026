@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     public AudioClip jumpSfx;
     public AudioClip crashSfx;
+    public bool isDash = false;
 
     private Rigidbody rb;
     private InputAction jumpAction;
@@ -20,12 +21,15 @@ public class PlayerController : MonoBehaviour
     private AudioSource playerAudio;
 
     public bool gameOver = false;
+    public GameObject backGround;
+    
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         playerAnim = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
+        backGround.GetComponent<MoveLeft>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -56,6 +60,16 @@ public class PlayerController : MonoBehaviour
             isDbJump = false;
             playerAudio.PlayOneShot(jumpSfx);
         }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            isDash = true;
+
+        }
+        else
+        {
+            isDash = false;
+        }
+        
     }
 
     private void OnCollisionEnter(Collision collision)
